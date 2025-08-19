@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    height: 100%;
+}
+
+/*Making body a main grid container*/
+body{
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 10% 70% 20%;
+}
+
+/*Header flex container*/
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img{
+    width: 4vh;
+    height: 4vh;
+}
+
+/*Left header flex container*/
+.headerLeft{
+    width: 20vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/*Right header flex container*/
+.headerRight{
+    width: 40vh;
+    display: flex;
+    justify-content: space-around;
+}
