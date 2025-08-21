@@ -10,6 +10,7 @@ html{
 
 /*Making body a main grid container*/
 body{
+    background-color: #212121;
     min-height: 100%;
     display: grid;
     grid-template-columns: auto;
