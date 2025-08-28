@@ -15,7 +15,7 @@ circle.style.strokeDasharray = circumference;
 circle.style.strokeDashoffset = 0;
 
 let time = 30;
-let current = time;
+let current = time, timer;
 
 function updateTimer(){
     current--;
@@ -27,5 +27,9 @@ function updateTimer(){
     if(current <= 0) clearInterval(timer);
 }
 
-const timer = setInterval(updateTimer, 1000);
+function startTimer(){
+    if(current === time) timer = setInterval(updateTimer, 1000);
+}
+
+
 
