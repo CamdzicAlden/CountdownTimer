@@ -4,7 +4,6 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
     position: relative;
 }
 
@@ -43,5 +42,5 @@ footer{
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: top;
 }

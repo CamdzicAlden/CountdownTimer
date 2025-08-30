@@ -13,11 +13,12 @@ html{
 /*Making body a main grid container*/
 body{
     background-color: #212121;
+    color: #ffffff;
     height: 100%;
     font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 10% 70% 20%;
+    grid-template-rows: 10% 80% 10%;
 }
 
 /*Header flex container*/
@@ -30,6 +31,10 @@ header{
 header img{
     width: 4vh;
     height: 4vh;
+}
+
+header img:hover{
+    cursor: pointer;
 }
 
 /*Left header flex container*/
@@ -46,14 +51,42 @@ header img{
     justify-content: space-around;
 }
 
-/*Button for starting timer/stopwatch*/
-.startButton{
+button{
     width: 15vh;
     height: 5vh;
     border-radius: 10vh;
     border: none;
-    background-color: #305CDE;
-    color: #FFFFFF;
+    font-family: inherit;
+    color: inherit;
     font-weight: 700;
     font-size: 2vh;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+/*Button for starting timer/stopwatch*/
+.startButton{
+    background-color: #305CDE;
+}
+
+.pauseReset{
+    width: 32vh;
+    height: 5vh;
+    display: none;
+    justify-content: space-between;
+}
+
+.resetButton{
+    background-color: #616161;
+}
+
+.pauseButton{
+    background-color: #CB4949;
+}
+
+.resumeButton{
+    background-color: #305CDE;
+    display: none;
 }
