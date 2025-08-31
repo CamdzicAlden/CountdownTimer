@@ -17,7 +17,7 @@ const pauseReset = document.querySelector(".pauseReset");
 const stopwatch = document.getElementById("stopwatch");
 const edit = document.getElementById("editTimer");
 const headerRight = document.querySelector(".headerRight");
-const sunMoon = document.getElementById("sunMoon");;
+const sunMoon = document.getElementById("sunMoon");
 
 //Code for stopwatch icon hovering
 stopwatch.onmouseover = () => stopwatch.src = "./icons/StopwatchWhiteFill.svg"
