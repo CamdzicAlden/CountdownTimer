@@ -17,10 +17,15 @@ const pauseReset = document.querySelector(".pauseReset");
 const stopwatch = document.getElementById("stopwatch");
 const edit = document.getElementById("editTimer");
 const headerRight = document.querySelector(".headerRight");
+const sunMoon = document.getElementById("sunMoon");;
 
 //Code for stopwatch icon hovering
 stopwatch.onmouseover = () => stopwatch.src = "./icons/StopwatchWhiteFill.svg"
 stopwatch.onmouseleave = () => stopwatch.src = "./icons/StopwatchWhiteEmpty.svg"
+
+//Making hover effect for white mode sun icon
+sunMoon.onmouseover = () => sunMoon.src = "./icons/SunWhiteFill.svg";
+sunMoon.onmouseleave = () => sunMoon.src = "./icons/SunWhiteEmpty.svg";
 
 const radius = circle.r.baseVal.value;  //Getting progress circle radius base value
 const circumference = 2 * Math.PI * radius;  //Calculating circumference of the circle
@@ -84,7 +89,7 @@ function resetTimer(){
     displayMinutes();
     displaySeconds();
     showEdit();
-    
+
     circle.style.transition = "none";
     circle.style.strokeDashoffset = 0;
     requestAnimationFrame(() => circle.style.transition = "stroke-dashoffset 1s linear");
