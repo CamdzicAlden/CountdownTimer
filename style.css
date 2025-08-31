@@ -1,5 +1,6 @@
 /*Importing Roboto Google font*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('./css/colorVariables.css');
 
 *{
     box-sizing: border-box;
@@ -14,8 +15,8 @@ html{
 /*Making body a main grid container*/
 body{
     height: 100%;
-    background-color: #212121;
-    color: #ffffff;
+    background-color: var(--pageBlack);
+    color: var(--pageWhite);
     font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-columns: auto;
@@ -69,7 +70,7 @@ button:hover{
 
 /*Button for starting timer/stopwatch*/
 .startButton{
-    background-color: #305CDE;
+    background-color: var(--pageBlue);
 }
 
 /*Container for pause and reset buttons*/
@@ -89,6 +90,6 @@ button:hover{
 }
 
 .resumeButton{
-    background-color: #305CDE;
+    background-color: var(--pageBlue);
     display: none;
 }

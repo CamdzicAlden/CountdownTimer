@@ -88,20 +88,19 @@ function resetTimer(){
     requestAnimationFrame(() => circle.style.transition = "stroke-dashoffset 1s linear");
 
     pauseReset.style.display = "none";
+    pauseDisplay();
     startBtn.style.display = "inline-block";
 }
 
 
 function pauseTimer(){
       clearInterval(timer);
-      pauseBtn.style.display = "none";
-      resumeBtn.style.display = "inline-block";
+      resumeDisplay();
 }
 
 function resumeTimer(){
     timer = setInterval(updateTimer, 1000);
-    resumeBtn.style.display = "none";
-    pauseBtn.style.display = "inline-block";
+    pauseDisplay();
 }
 
 function displaySeconds(){
@@ -131,6 +130,16 @@ function displayHours(){
     if(currentH >= 10) hours.textContent = currentH;
     else hours.textContent = "0" + currentH;
   }
+}
+
+function resumeDisplay(){
+  pauseBtn.style.display = "none";
+  resumeBtn.style.display = "inline-block";
+}
+
+function pauseDisplay(){
+  resumeBtn.style.display = "none";
+  pauseBtn.style.display = "inline-block";
 }
 
 

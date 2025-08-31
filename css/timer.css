@@ -1,3 +1,5 @@
+@import url('./css/colorVariables.css');
+
 /*Container for timer circle and its content*/
 main{
     width: 100%;
@@ -26,7 +28,7 @@ circle{
 }
 
 .progress{
-    stroke: #305CDE;
+    stroke: var(--pageBlue);
     transition: stroke-dashoffset 1s linear;  /*Animate offset changing*/
     stroke-linecap: round;
 }
