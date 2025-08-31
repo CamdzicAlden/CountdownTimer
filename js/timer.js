@@ -13,6 +13,14 @@ const pauseBtn = document.querySelector(".pauseButton");
 const resumeBtn = document.querySelector(".resumeButton");
 const pauseReset = document.querySelector(".pauseReset");
 
+//Header icons variables
+const stopwatch = document.getElementById("stopwatch");
+const edit = document.getElementById("editTimer");
+const headerRight = document.querySelector(".headerRight");
+
+//Code for stopwatch icon hovering
+stopwatch.onmouseover = () => stopwatch.src = "./icons/StopwatchWhiteFill.svg"
+stopwatch.onmouseleave = () => stopwatch.src = "./icons/StopwatchWhiteEmpty.svg"
 
 const radius = circle.r.baseVal.value;  //Getting progress circle radius base value
 const circumference = 2 * Math.PI * radius;  //Calculating circumference of the circle
@@ -23,14 +31,6 @@ circle.style.strokeDashoffset = 0;  //Initial offset
 let defaultH = 0, defaultMin = 1, defaultSec = 5;
 let currentH = defaultH, currentMin = defaultMin, currentSec = defaultSec;
 let timer, secondsSum = 0, currentSecondsSum = 0; 
-
-//Header stopwatch icon variable
-let stopwatch = document.getElementById("stopwatch");
-
-//Code for stopwatch icon hovering
-stopwatch.onmouseover = () => stopwatch.src = "./icons/StopwatchWhiteFill.svg"
-stopwatch.onmouseleave = () => stopwatch.src = "./icons/StopwatchWhiteEmpty.svg"
-
 
 secondsSum = (((defaultH * 60) + defaultMin) * 60) + defaultSec;  //Starting seconds sum
 
@@ -70,6 +70,7 @@ function startTimer(){
     //Start the timer and run function every second
     timer = setInterval(updateTimer, 1000);
     startBtn.style.display = "none";
+    hideEdit();
     pauseReset.style.display = "flex";
 }
 
@@ -82,6 +83,7 @@ function resetTimer(){
     displayHours();
     displayMinutes();
     displaySeconds();
+    showEdit();
     
     circle.style.transition = "none";
     circle.style.strokeDashoffset = 0;
@@ -140,6 +142,16 @@ function resumeDisplay(){
 function pauseDisplay(){
   resumeBtn.style.display = "none";
   pauseBtn.style.display = "inline-block";
+}
+
+function hideEdit(){
+  edit.style.display = "none";
+  headerRight.style.justifyContent = "center";
+}
+
+function showEdit(){
+  edit.style.display = "block";
+  headerRight.style.justifyContent = "space-around";
 }
 
 
