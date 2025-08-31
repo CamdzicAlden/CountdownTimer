@@ -1,3 +1,4 @@
+/*Importing Roboto Google font*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 *{
@@ -12,9 +13,9 @@ html{
 
 /*Making body a main grid container*/
 body{
+    height: 100%;
     background-color: #212121;
     color: #ffffff;
-    height: 100%;
     font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-columns: auto;
@@ -56,8 +57,8 @@ button{
     height: 5vh;
     border-radius: 10vh;
     border: none;
-    font-family: inherit;
     color: inherit;
+    font-family: inherit;
     font-weight: 700;
     font-size: 2vh;
 }
@@ -71,6 +72,7 @@ button:hover{
     background-color: #305CDE;
 }
 
+/*Container for pause and reset buttons*/
 .pauseReset{
     width: 32vh;
     height: 5vh;

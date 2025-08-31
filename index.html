@@ -12,6 +12,7 @@
     </head>
 
     <body>
+      <!-- Top navigation icons -->
       <header>
         <div class="headerLeft">
           <img src="./icons/TimerWhiteFill.svg" alt="T" id="timer">
@@ -24,15 +25,24 @@
       </header>
 
       <main>
+         <!-- Middle svg timer circle -->
          <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
            <circle class="background" cx="50" cy="50" r="35"/>
            <circle class="progress" cx="50" cy="50" r="35"/>
          </svg>
 
-         <div class="timeText" id="timeText">30</div>
+         <!-- Text in the middle -->
+         <div class="timeText" id="timeText">
+            <div class="hours" style="display: none">00</div>
+            <div class="semicolumn1" style="display: none;">:</div>
+            <div class="minutes">01</div>
+            <div class="semicolumn2">:</div>
+            <div class="seconds">05</div>
+         </div>
       </main>
       
       <footer>
+        <!-- Bottom timer buttons -->
         <button onclick="startTimer()" class="startButton">Start</button>
 
         <div class="pauseReset">

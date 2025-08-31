@@ -1,15 +1,17 @@
+/*Container for timer circle and its content*/
 main{
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: relative; 
 }
 
+/*Whole timer circle*/
 svg{
-    display: block;
-    transform: rotate(-90deg);
+    display: block;  /*Preventing extra space under*/
+    transform: rotate(-90deg);  /*Rotateing so it starts from the top*/
     width: auto;
     height: 100%;
 }
@@ -25,18 +27,22 @@ circle{
 
 .progress{
     stroke: #305CDE;
-    transition: stroke-dashoffset 1s linear;
+    transition: stroke-dashoffset 1s linear;  /*Animate offset changing*/
     stroke-linecap: round;
 }
 
+/*Middle timer text*/
 .timeText{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
     font-size: 7vh;
 }
 
+/*Button container*/
 footer{
     width: 100%;
     height: 100%;
