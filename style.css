@@ -82,6 +82,10 @@ button:hover{
     background-color: var(--pageBlue);
 }
 
+.startButton:hover{
+    background-color: var(--pageBlueHover);
+}
+
 /*Container for pause and reset buttons*/
 .pauseReset{
     width: 34vh;
@@ -94,11 +98,23 @@ button:hover{
     background-color: #616161;
 }
 
+.resetButton:hover{
+    background-color: #414141;
+}
+
 .pauseButton{
     background-color: #CB4949;
+}
+
+.pauseButton:hover{
+    background-color: #D02424;
 }
 
 .resumeButton{
     background-color: var(--pageBlue);
     display: none;
+}
+
+.resumeButton:hover{
+    background-color: var(--pageBlueHover);
 }
