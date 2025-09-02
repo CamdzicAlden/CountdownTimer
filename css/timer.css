@@ -13,7 +13,7 @@ main{
 /*Whole timer circle*/
 svg{
     display: block;  /*Preventing extra space under*/
-    transform: rotate(-90deg);  /*Rotateing so it starts from the top*/
+    transform: rotate(-90deg);  /*Rotating so it starts from the top*/
     width: auto;
     height: 100%;
 }

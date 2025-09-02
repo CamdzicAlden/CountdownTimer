@@ -89,7 +89,7 @@ button:hover{
 /*Container for pause and reset buttons*/
 .pauseReset{
     width: 34vh;
-    height: 5vh;
+    height: 6vh;
     display: none;
     justify-content: space-between;
 }

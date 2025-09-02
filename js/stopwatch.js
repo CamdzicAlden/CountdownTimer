@@ -35,6 +35,7 @@ function updateStopwatch(){
     }else if(currentH < 99){
         currentH++;
         currentMin = 0;
+        currentSec = 0;
         updateHours();
     }
 }

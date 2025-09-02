@@ -14,10 +14,10 @@ const resumeBtn = document.querySelector(".resumeButton");
 const pauseReset = document.querySelector(".pauseReset");
 
 //Header icons variables
+const sunMoon = document.getElementById("sunMoon");
 const stopwatch = document.getElementById("stopwatch");
 const edit = document.getElementById("editTimer");
 const headerRight = document.querySelector(".headerRight");
-const sunMoon = document.getElementById("sunMoon");
 
 //Code for stopwatch icon hovering
 stopwatch.onmouseover = () => stopwatch.src = "./icons/StopwatchWhiteFill.svg"
@@ -33,13 +33,13 @@ const circumference = 2 * Math.PI * radius;  //Calculating circumference of the 
 circle.style.strokeDasharray = circumference;  //Making circle with one big dash 
 circle.style.strokeDashoffset = 0;  //Initial offset
 
-let defaultH = 0, defaultMin = 1, defaultSec = 5;
-let currentH = defaultH, currentMin = defaultMin, currentSec = defaultSec;
-let timer, secondsSum = 0, currentSecondsSum = 0; 
+let defaultH = 0, defaultMin = 1, defaultSec = 0,  defaultHundr = 100;
+let currentH = defaultH, currentMin = defaultMin, currentSec = defaultSec, currentHundr = defaultHundr;
+let timer, hundredsSum = 0, currentHundredsSum = 0; 
 
 secondsSum = (((defaultH * 60) + defaultMin) * 60) + defaultSec;  //Starting seconds sum
 
-//Function for updateing timer circle
+//Function for updating timer circle
 function updateTimer(){
     if(currentH <= 0 && currentMin <= 0 && currentSec <= 0) {
       clearInterval(timer); 
@@ -51,14 +51,13 @@ function updateTimer(){
       displaySeconds();
     }else if(currentMin > 0){
       currentMin--;  //Reduce minutes by one
-      displayMinutes();
       currentSec = 59;
-      seconds.textContent = currentSec;
+      displayMinutes();
     }else if(currentH > 0){
       currentH--;  //Reduce hours by one
-      displayHours();
       currentMin = 59;
-      minutes.textContent = currentMin;
+      currentSec = 59;
+      displayHours();
     }
 
     //Current seconds sum
@@ -86,8 +85,6 @@ function resetTimer(){
     currentSec = defaultSec;
 
     displayHours();
-    displayMinutes();
-    displaySeconds();
     showEdit();
 
     circle.style.transition = "none";
@@ -116,7 +113,7 @@ function displaySeconds(){
 }
 
 function displayMinutes(){
-  if(currentMin === 0) {
+  if(currentMin === 0 && currentH === 0) {
     minutes.style.display = "none";
     semicolumn2.style.display = "none";
   }else{
@@ -125,6 +122,7 @@ function displayMinutes(){
     if(currentMin >= 10) minutes.textContent = currentMin;
     else minutes.textContent = "0" + currentMin;
   }
+  displaySeconds();
 }
 
 function displayHours(){
@@ -137,6 +135,7 @@ function displayHours(){
     if(currentH >= 10) hours.textContent = currentH;
     else hours.textContent = "0" + currentH;
   }
+  displayMinutes();
 }
 
 function resumeDisplay(){
