@@ -29,7 +29,6 @@ circle{
 
 .progress{
     stroke: var(--pageBlue);
-    transition: stroke-dashoffset 1s linear;  /*Animate offset changing*/
     stroke-linecap: round;
 }
 

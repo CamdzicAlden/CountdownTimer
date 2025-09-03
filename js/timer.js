@@ -33,38 +33,43 @@ const circumference = 2 * Math.PI * radius;  //Calculating circumference of the 
 circle.style.strokeDasharray = circumference;  //Making circle with one big dash 
 circle.style.strokeDashoffset = 0;  //Initial offset
 
-let defaultH = 0, defaultMin = 1, defaultSec = 0,  defaultHundr = 100;
+let defaultH = 0, defaultMin = 1, defaultSec = 0,  defaultHundr = 0;
 let currentH = defaultH, currentMin = defaultMin, currentSec = defaultSec, currentHundr = defaultHundr;
-let timer, hundredsSum = 0, currentHundredsSum = 0; 
+let timer, hundredthsSum = 0, currentHundredthsSum = 0; 
 
-secondsSum = (((defaultH * 60) + defaultMin) * 60) + defaultSec;  //Starting seconds sum
+//Starting time in hundredth of seconds 
+hundredthsSum = (((((defaultH * 60) + defaultMin) * 60) + defaultSec) * 100) + defaultHundr;  
 
 //Function for updating timer circle
 function updateTimer(){
-    if(currentH <= 0 && currentMin <= 0 && currentSec <= 0) {
+    if(currentH <= 0 && currentMin <= 0 && currentSec <= 0 && currentHundr <= 0) {
       clearInterval(timer); 
       return;
     } //If time is 0, stop the timer
 
-    if(currentSec > 0){
+    if(currentHundr > 0){
+      currentHundr--;
+    }
+    else if(currentSec > 0){
       currentSec--;  //Reduce seconds by one
-      displaySeconds();
+      currentHundr = 99;
     }else if(currentMin > 0){
       currentMin--;  //Reduce minutes by one
       currentSec = 59;
-      displayMinutes();
+      currentHundr = 99;
     }else if(currentH > 0){
       currentH--;  //Reduce hours by one
       currentMin = 59;
       currentSec = 59;
-      displayHours();
+      currentHundr = 99;
     }
 
-    //Current seconds sum
-    currentSecondsSum = (((currentH * 60) + currentMin) * 60) + currentSec;  
+    //Current time in hundredth of seconds 
+    currentHundredthsSum = calculateCurrentHundrSum();
+    displayTime();   
 
     //Calculating offset (if left time is 40%, offset will be 60%)
-    offset = circumference - (currentSecondsSum/secondsSum) * circumference; 
+    offset = circumference - (currentHundredthsSum/hundredthsSum) * circumference; 
     circle.style.strokeDashoffset = offset;
 
 }
@@ -72,7 +77,7 @@ function updateTimer(){
 //Event handler for starting timer
 function startTimer(){
     //Start the timer and run function every second
-    timer = setInterval(updateTimer, 1000);
+    timer = setInterval(updateTimer, 10);
     startBtn.style.display = "none";
     hideEdit();
     pauseReset.style.display = "flex";
@@ -83,13 +88,13 @@ function resetTimer(){
     currentH = defaultH;
     currentMin = defaultMin;
     currentSec = defaultSec;
+    currentHundr = defaultHundr;
 
-    displayHours();
+    currentHundredthsSum = calculateCurrentHundrSum();
+    displayTime();
     showEdit();
 
-    circle.style.transition = "none";
     circle.style.strokeDashoffset = 0;
-    requestAnimationFrame(() => circle.style.transition = "stroke-dashoffset 1s linear");
 
     pauseReset.style.display = "none";
     pauseDisplay();
@@ -103,39 +108,45 @@ function pauseTimer(){
 }
 
 function resumeTimer(){
-    timer = setInterval(updateTimer, 1000);
+    timer = setInterval(updateTimer, 10);
     pauseDisplay();
 }
 
-function displaySeconds(){
-  if(currentSec >= 10) seconds.textContent = currentSec;
-  else seconds.textContent = "0" + currentSec;
-}
 
-function displayMinutes(){
-  if(currentMin === 0 && currentH === 0) {
-    minutes.style.display = "none";
-    semicolumn2.style.display = "none";
-  }else{
-    minutes.style.display = "block";
-    semicolumn2.style.display = "block";
-    if(currentMin >= 10) minutes.textContent = currentMin;
-    else minutes.textContent = "0" + currentMin;
-  }
-  displaySeconds();
-}
+function displayTime(){
+  let totalSecLeft = Math.ceil(currentHundredthsSum / 100);
 
-function displayHours(){
-  if(currentH === 0) {
+  let displayH = Math.floor(totalSecLeft / 3600);
+  let displayMin = Math.floor((totalSecLeft % 3600) / 60);
+  let displaySec = totalSecLeft % 60;
+
+  //Display hours
+  if(displayH === 0) {
     hours.style.display = "none";
     semicolumn1.style.display = "none";
   }else{
     hours.style.display = "block";
     semicolumn1.style.display = "block";
-    if(currentH >= 10) hours.textContent = currentH;
-    else hours.textContent = "0" + currentH;
+    hours.textContent = displayH < 10 ? "0" + displayH : displayH;
   }
-  displayMinutes();
+
+  //Display minutes
+  if(displayMin === 0 && displayH === 0) {
+    minutes.style.display = "none";
+    semicolumn2.style.display = "none";
+  }else{
+    minutes.style.display = "block";
+    semicolumn2.style.display = "block";
+    minutes.textContent = displayMin < 10 ? "0" + displayMin : displayMin;
+  }
+
+  //Display seconds
+  seconds.textContent = displaySec < 10 ? "0" + displaySec : displaySec;
+}
+
+function calculateCurrentHundrSum(){
+  //Current time in hundredth of seconds 
+    return (((((currentH * 60) + currentMin) * 60) + currentSec) * 100) + currentHundr;
 }
 
 function resumeDisplay(){
