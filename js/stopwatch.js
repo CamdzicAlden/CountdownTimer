@@ -8,11 +8,14 @@ const pauseBtn = document.querySelector(".pauseButton");
 const resetBtn = document.querySelector(".resetButton");
 const resumeBtn = document.querySelector(".resumeButton");
 const pauseReset = document.querySelector(".pauseReset");
+
+//Main elements
 const hours = document.querySelector(".hours");
 const minutes = document.querySelector(".minutes");
 const seconds = document.querySelector(".seconds");
+const hundredths = document.querySelector(".hundredths");
 
-let currentH = 0, currentMin = 0, currentSec = 0;
+let currentH = 0, currentMin = 0, currentSec = 0, currentHundr = 0;
 let stopwatch;
 
 //Making hover effect for timer icon
@@ -25,8 +28,13 @@ sunMoon.onmouseleave = () => sunMoon.src = "../icons/SunWhiteEmpty.svg";
 
 //Function for updateing stopwatch
 function updateStopwatch(){
-    if(currentSec < 59){
+    if(currentHundr < 99){
+        currentHundr++;
+        updateHundr();
+    }
+    else if(currentSec < 59){
         currentSec++;
+        currentHundr = 0;
         updateSeconds();
     }else if(currentMin < 59){
         currentMin++;
@@ -42,7 +50,7 @@ function updateStopwatch(){
 
 //Event handler for start button (for starting stopwatch)
 function startStopwatch(){
-    stopwatch = setInterval(updateStopwatch, 1000);
+    stopwatch = setInterval(updateStopwatch, 10);
     startBtn.style.display = "none";
     pauseReset.style.display = "flex";
 }
@@ -53,6 +61,7 @@ function resetStopwatch(){
     currentH = 0;
     currentMin = 0;
     currentSec = 0;
+    currentHundr = 0;
     updateHours(); //This method is calling all update methods
     pauseDisplay();
     pauseReset.style.display = "none";
@@ -68,27 +77,30 @@ function pauseStopwatch(){
 
 //Event handler for resume button
 function resumeStopwatch(){
-    stopwatch = setInterval(updateStopwatch, 1000);
+    stopwatch = setInterval(updateStopwatch, 10);
     pauseDisplay();
+}
+
+//Function for displaying hundredths in correct format
+function updateHundr(){
+    hundredths.textContent = currentHundr < 10 ? ".0" + currentHundr : "." + currentHundr;
 }
 
 //Function for displaying seconds in correct format
 function updateSeconds(){
-    if(currentSec < 10) seconds.textContent = "0" + currentSec;
-    else seconds.textContent = currentSec;
+    seconds.textContent = currentSec < 10 ? "0" + currentSec : currentSec;
+    updateHundr();
 }
 
 //Function for displaying minutes and seconds in correct format
 function updateMinutes(){
-    if(currentMin < 10) minutes.textContent = "0" + currentMin;
-    else minutes.textContent = currentMin;
+    minutes.textContent = currentMin < 10 ? "0" + currentMin : currentMin;
     updateSeconds();
 }
 
 //Function for displaying whole stopwatch in correct format
 function updateHours(){
-    if(currentH < 10) hours.textContent = "0" + currentH;
-    else hours.textContent = currentH;
+    hours.textContent = currentH < 10 ? "0" + currentH : currentH;
     updateMinutes();
 }
 
