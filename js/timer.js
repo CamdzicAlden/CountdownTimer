@@ -33,7 +33,7 @@ const circumference = 2 * Math.PI * radius;  //Calculating circumference of the 
 circle.style.strokeDasharray = circumference;  //Making circle with one big dash 
 circle.style.strokeDashoffset = 0;  //Initial offset
 
-let defaultH = 0, defaultMin = 0, defaultSec = 10,  defaultHundr = 0;
+let defaultH = 0, defaultMin = 0, defaultSec = 15,  defaultHundr = 0;
 let currentH = defaultH, currentMin = defaultMin, currentSec = defaultSec, currentHundr = defaultHundr;
 let timer, hundredthsSum = 0, currentHundredthsSum = 0; 
 
@@ -71,6 +71,7 @@ function updateTimer(){
     //Calculating offset (if left time is 40%, offset will be 60%)
     offset = circumference - (currentHundredthsSum/hundredthsSum) * circumference; 
     circle.style.strokeDashoffset = offset;
+    if(currentH === 0 && currentMin === 0 && currentSec < 5) circle.style.stroke = "#D02424";
 
 }
 
@@ -81,6 +82,7 @@ function startTimer(){
     startBtn.style.display = "none";
     hideEdit();
     pauseReset.style.display = "flex";
+    circle.style.transition = "stroke 1s linear";
 }
 
 function resetTimer(){
@@ -95,6 +97,8 @@ function resetTimer(){
     showEdit();
 
     circle.style.strokeDashoffset = 0;
+    circle.style.transition = "none";
+    circle.style.stroke = "#305CDE";
 
     pauseReset.style.display = "none";
     pauseDisplay();
