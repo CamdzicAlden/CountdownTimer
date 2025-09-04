@@ -9,7 +9,7 @@
 
       <link rel="icon" href="../icons/TimerWhiteFill.svg" type="image/x-icon">
       <link rel="stylesheet" href="../style.css">
-      <link rel="stylesheet" href="../css/timer.css">
+      <link rel="stylesheet" href="../css/editTImer.css">
     </head>
     <body>
       <!-- Top navigation icons -->
@@ -24,7 +24,16 @@
       </header>
 
       <main>
-        
+        <div class="inputGrid">
+          <div class="hours">Hours</div>
+          <div class="minutes">Minutes</div>
+          <div class="seconds">Seconds</div>
+          <input type="text" id="hours" maxlength="2" size="2" pattern="\d*" inputmode="numeric" value="00" autocomplete="off">
+          <div id="semicolumn1">:</div>
+          <input type="text" id="minutes" maxlength="2" size="2" pattern="\d*" inputmode="numeric" value="00" autocomplete="off">
+          <div id="semicolumn2">:</div>
+          <input type="text" id="seconds" maxlength="2" size="2" pattern="\d*" inputmode="numeric" value="00" autocomplete="off">
+        </div>
       </main>
       
       <footer>

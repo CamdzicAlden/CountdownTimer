@@ -33,7 +33,7 @@ const circumference = 2 * Math.PI * radius;  //Calculating circumference of the 
 circle.style.strokeDasharray = circumference;  //Making circle with one big dash 
 circle.style.strokeDashoffset = 0;  //Initial offset
 
-let defaultH = 0, defaultMin = 1, defaultSec = 0,  defaultHundr = 0;
+let defaultH = 0, defaultMin = 0, defaultSec = 10,  defaultHundr = 0;
 let currentH = defaultH, currentMin = defaultMin, currentSec = defaultSec, currentHundr = defaultHundr;
 let timer, hundredthsSum = 0, currentHundredthsSum = 0; 
 
