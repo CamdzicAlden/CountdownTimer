@@ -6,6 +6,9 @@ const hours = document.getElementById("hours");
 const minutes = document.getElementById("minutes");
 const seconds = document.getElementById("seconds");
 
+const startBtn = document.querySelector(".startButton");
+const cancelBtn = document.querySelector(".cancelButton");
+
 //Making hover effect for white mode sun icon
 sunMoon.onmouseover = () => sunMoon.src = "../icons/SunWhiteFill.svg";
 sunMoon.onmouseleave = () => sunMoon.src = "../icons/SunWhiteEmpty.svg";
@@ -81,3 +84,23 @@ seconds.addEventListener("blur", e => {
         e.target.value = "0" + e.target.value;
     }
 })
+
+
+function setTimer(){
+    const timerData = {
+        h: clearZeros(hours.value),
+        m: clearZeros(minutes.value),
+        s: clearZeros(seconds.value),
+    }
+
+    sessionStorage.setItem("timerData", JSON.stringify(timerData));
+    window.location.href = "../index.html";
+}
+
+function cancel(){
+    window.location.href = "../index.html";
+}
+
+function clearZeros(textInput){
+    return (textInput[0] === "0") ? textInput.slice(1) : textInput;
+}

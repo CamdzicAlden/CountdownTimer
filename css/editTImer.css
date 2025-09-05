@@ -54,3 +54,23 @@ input[type="text"]:focus{
 .hours, .minutes, .seconds {
     font-size: 2vh;
 }
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cancelButton{
+    background-color: #CB4949;
+}
+
+.cancelButton:hover{
+    background-color: #D02424;
+}
+
+.cancelStart{
+    width: 34vh;
+    display: flex;
+    justify-content: space-between;
+}
