@@ -5,6 +5,7 @@ const minutes = document.querySelector(".minutes");  //Getting minutes
 const seconds = document.querySelector(".seconds");  //Getting seconds
 const semicolumn1 = document.querySelector(".semicolumn1"); //Getting first semicolumn
 const semicolumn2 = document.querySelector(".semicolumn2"); //Getting second semicolumn
+const timerTime = document.querySelector(".timerTime");
 
 //Bottom button variables
 const startBtn = document.querySelector(".startButton");
@@ -223,6 +224,21 @@ function initialDisplay(){
 
   //Display seconds
   seconds.textContent = defaultSec < 10 ? "0" + defaultSec : defaultSec;
+
+  if(defaultH > 0 && defaultMin > 0 && defaultSec > 0) 
+    timerTime.textContent = defaultH + " h " + defaultMin + " m " + defaultSec + " s";
+  else if(defaultH > 0 && defaultMin > 0)
+    timerTime.textContent = defaultH + " h " + defaultMin + " m";
+  else if(defaultH > 0 && defaultSec > 0)
+    timerTime.textContent = defaultH + " h " + defaultSec + " s";
+  else if(defaultMin > 0 && defaultSec > 0)
+    timerTime.textContent = defaultMin + " m " + defaultSec + " s";
+  else if(defaultH > 0) 
+    timerTime.textContent = defaultH + " h";
+  else if(defaultMin > 0) 
+    timerTime.textContent = defaultMin + " m";
+  else if(defaultSec > 0) 
+    timerTime.textContent = defaultSec + " s";
 }
 
 function displayIcons(){
