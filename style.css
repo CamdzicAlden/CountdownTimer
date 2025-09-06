@@ -23,6 +23,11 @@ body{
     grid-template-rows: 10% 80% 10%;
 }
 
+body.white{
+    background-color: var(--pageWhite);
+    color: var(--pageBlack);
+}
+
 /*Header flex container*/
 header{
     display: flex;
@@ -72,6 +77,14 @@ button{
     font-family: inherit;
     font-weight: 700;
     font-size: 2.5vh;
+}
+
+#darkWhite{
+    border: none;
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    border-radius: 0;
 }
 
 button:hover{

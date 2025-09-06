@@ -9,15 +9,33 @@ const seconds = document.getElementById("seconds");
 const startBtn = document.querySelector(".startButton");
 const cancelBtn = document.querySelector(".cancelButton");
 
+let theme = sessionStorage.getItem("theme");
+theme = theme ? theme : "dark";
+
+if(theme === "white"){
+  document.body.classList.add("white");
+}
+
+displayIcons();
+
+
 //Making hover effect for white mode sun icon
-sunMoon.onmouseover = () => sunMoon.src = "../icons/SunWhiteFill.svg";
-sunMoon.onmouseleave = () => sunMoon.src = "../icons/SunWhiteEmpty.svg";
+sunMoon.onmouseover = () => sunMoon.src = (theme === "white") ? "../icons/MoonBlackFill.svg" : 
+"../icons/SunWhiteFill.svg";
+sunMoon.onmouseleave = () => sunMoon.src = (theme === "white") ? "../icons/MoonBlackEmpty.svg" : 
+"../icons/SunWhiteEmpty.svg";
+
 //Code for stopwatch icon hovering
-stopwatch.onmouseover = () => stopwatch.src = "../icons/StopwatchWhiteFill.svg"
-stopwatch.onmouseleave = () => stopwatch.src = "../icons/StopwatchWhiteEmpty.svg"
-//Code for stopwatch icon hovering
-timer.onmouseover = () => timer.src = "../icons/TimerWhiteFill.svg"
-timer.onmouseleave = () => timer.src = "../icons/TimerWhiteEmpty.svg"
+stopwatch.onmouseover = () => stopwatch.src = (theme === "white") ? "../icons/StopwatchBlackFill.svg" : 
+"../icons/StopwatchWhiteFill.svg";
+stopwatch.onmouseleave = () => stopwatch.src = (theme === "white") ? "../icons/StopwatchBlackEmpty.svg" : 
+"../icons/StopwatchWhiteEmpty.svg";
+
+//Making hover effect for timer icon
+timer.onmouseover = () => timer.src = (theme === "white") ? "../icons/TimerBlackFill.svg" : 
+"../icons/TimerWhiteFill.svg";
+timer.onmouseleave = () => timer.src = (theme === "white") ? "../icons/TimerBlackEmpty.svg" : 
+"../icons/TimerWhiteEmpty.svg";
 
 
 function handleMinSecInput(e, nextField){
@@ -103,4 +121,18 @@ function cancel(){
 
 function clearZeros(textInput){
     return (textInput[0] === "0") ? textInput.slice(1) : textInput;
+}
+
+function displayIcons(){
+  theme = sessionStorage.getItem("theme");
+
+  if(theme === "white"){
+    sunMoon.src = "../icons/MoonBlackEmpty.svg";
+    timer.src = "../icons/TimerBlackEmpty.svg";
+    stopwatch.src = "../icons/StopwatchBlackFill.svg";
+  }else{
+    sunMoon.src = "../icons/SunWhiteEmpty.svg";
+    timer.src = "../icons/TimerWhiteEmpty.svg";
+    stopwatch.src = "../icons/StopwatchWhiteFill.svg";
+  }
 }

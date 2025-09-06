@@ -16,17 +16,28 @@ const pauseReset = document.querySelector(".pauseReset");
 //Header icons variables
 const sunMoon = document.getElementById("sunMoon");
 const stopwatch = document.getElementById("stopwatch");
+const timerIcon = document.getElementById("timer");
 const edit = document.getElementById("editTimer");
 const headerRight = document.querySelector(".headerRight");
 const sound = new Audio("./sound/chime_time.mp3");
+let theme = sessionStorage.getItem("theme");
+theme = theme ? theme : "dark";
+
+if(theme === "white"){
+  document.body.classList.add("white");
+}
+
+displayIcons();
 
 //Code for stopwatch icon hovering
-stopwatch.onmouseover = () => stopwatch.src = "./icons/StopwatchWhiteFill.svg"
-stopwatch.onmouseleave = () => stopwatch.src = "./icons/StopwatchWhiteEmpty.svg"
+stopwatch.onmouseover = () => stopwatch.src = (theme === "white") ? "./icons/StopwatchBlackFill.svg" : "./icons/StopwatchWhiteFill.svg";
+stopwatch.onmouseleave = () => stopwatch.src = (theme === "white") ? "./icons/StopwatchBlackEmpty.svg" : "./icons/StopwatchWhiteEmpty.svg";
 
 //Making hover effect for white mode sun icon
-sunMoon.onmouseover = () => sunMoon.src = "./icons/SunWhiteFill.svg";
-sunMoon.onmouseleave = () => sunMoon.src = "./icons/SunWhiteEmpty.svg";
+sunMoon.onmouseover = () => sunMoon.src = (theme === "white") ? "./icons/MoonBlackFill.svg" : 
+"./icons/SunWhiteFill.svg";
+sunMoon.onmouseleave = () => sunMoon.src = (theme === "white") ? "./icons/MoonBlackEmpty.svg" : 
+"./icons/SunWhiteEmpty.svg";
 
 const radius = circle.r.baseVal.value;  //Getting progress circle radius base value
 const circumference = 2 * Math.PI * radius;  //Calculating circumference of the circle
@@ -35,7 +46,7 @@ circle.style.strokeDasharray = circumference;  //Making circle with one big dash
 circle.style.strokeDashoffset = 0;  //Initial offset
 
 const storedTimerData = sessionStorage.getItem("timerData");
-let defaultH, defaultMin, defaultSec,  defaultHundr = 0;
+let defaultH = 0, defaultMin = 1, defaultSec = 0,  defaultHundr = 0;
 
 if(storedTimerData){
   const timerData = JSON.parse(storedTimerData);
@@ -59,7 +70,7 @@ hundredthsSum = (((((defaultH * 60) + defaultMin) * 60) + defaultSec) * 100) + d
 
 //Function for updating timer circle
 function updateTimer(){ 
-    if(currentH === 0 && currentMin === 0 && currentSec <= 0 && currentHundr === 0) {
+    if(currentH === 0 && currentMin === 0 && currentSec === 0 && currentHundr === 0) {
       clearInterval(timer); 
       sound.loop = true;
       sound.play();
@@ -86,8 +97,6 @@ function updateTimer(){
       currentHundr = 99;
     }
 
-    //Current time in hundredth of seconds 
-    currentHundredthsSum = calculateCurrentHundrSum();
     displayTime();   
 
     //Calculating offset (if left time is 40%, offset will be 60%)
@@ -114,7 +123,6 @@ function resetTimer(){
     currentSec = defaultSec;
     currentHundr = defaultHundr;
 
-    currentHundredthsSum = calculateCurrentHundrSum();
     displayTime();
     showEdit();
 
@@ -140,6 +148,7 @@ function resumeTimer(){
 
 
 function displayTime(){
+  currentHundredthsSum = (((((currentH * 60) + currentMin) * 60) + currentSec) * 100) + currentHundr;
   let totalSecLeft = Math.ceil(currentHundredthsSum / 100);
 
   let displayH = Math.floor(totalSecLeft / 3600);
@@ -168,11 +177,6 @@ function displayTime(){
 
   //Display seconds
   seconds.textContent = displaySec < 10 ? "0" + displaySec : displaySec;
-}
-
-function calculateCurrentHundrSum(){
-  //Current time in hundredth of seconds 
-    return (((((currentH * 60) + currentMin) * 60) + currentSec) * 100) + currentHundr;
 }
 
 function resumeDisplay(){
@@ -218,6 +222,22 @@ function initialDisplay(){
 
   //Display seconds
   seconds.textContent = defaultSec < 10 ? "0" + defaultSec : defaultSec;
+}
+
+function displayIcons(){
+  theme = sessionStorage.getItem("theme");
+
+  if(theme === "white"){
+    sunMoon.src = "./icons/MoonBlackEmpty.svg";
+    stopwatch.src = "./icons/StopwatchBlackEmpty.svg";
+    timerIcon.src = "./icons/TimerBlackFill.svg";
+    edit.src = "./icons/EditBlack.svg";
+  }else{
+    sunMoon.src = "./icons/SunWhiteEmpty.svg";
+    stopwatch.src = "./icons/StopwatchWhiteEmpty.svg";
+    timerIcon.src = "./icons/TimerWhiteFill.svg";
+    edit.src = "./icons/EditWhite.svg";
+  }
 }
 
 

@@ -30,7 +30,7 @@ circle{
 .progress{
     stroke: var(--pageBlue);
     stroke-linecap: round;
-    transition: stroke 1s linear;
+    transition: stroke 1s linear; /*Transition for changing color to red at 5s left*/
 }
 
 /*Middle timer text*/

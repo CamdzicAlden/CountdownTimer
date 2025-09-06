@@ -1,5 +1,6 @@
 //Header icons
 const timer = document.getElementById("timer");
+const stopwatchIcon = document.getElementById("stopwatch");
 const sunMoon = document.getElementById("sunMoon");
 
 //Footer buttons
@@ -18,13 +19,24 @@ const hundredths = document.querySelector(".hundredths");
 let currentH = 0, currentMin = 0, currentSec = 0, currentHundr = 0;
 let stopwatch;
 
+let theme = sessionStorage.getItem("theme");
+theme = theme ? theme : "dark";
+
+if(theme === "white"){
+  document.body.classList.add("white");
+}
+
+displayIcons();
+
 //Making hover effect for timer icon
-timer.onmouseover = () => timer.src = "../icons/TimerWhiteFill.svg"
-timer.onmouseleave = () => timer.src = "../icons/TimerWhiteEmpty.svg"
+timer.onmouseover = () => timer.src = (theme === "white") ? "../icons/TimerBlackFill.svg" : "../icons/TimerWhiteFill.svg";
+timer.onmouseleave = () => timer.src = (theme === "white") ? "../icons/TimerBlackEmpty.svg" : "../icons/TimerWhiteEmpty.svg";
 
 //Making hover effect for white mode sun icon
-sunMoon.onmouseover = () => sunMoon.src = "../icons/SunWhiteFill.svg";
-sunMoon.onmouseleave = () => sunMoon.src = "../icons/SunWhiteEmpty.svg";
+sunMoon.onmouseover = () => sunMoon.src = (theme === "white") ? "../icons/MoonBlackFill.svg" : 
+"../icons/SunWhiteFill.svg";
+sunMoon.onmouseleave = () => sunMoon.src = (theme === "white") ? "../icons/MoonBlackEmpty.svg" : 
+"../icons/SunWhiteEmpty.svg";
 
 //Function for updateing stopwatch
 function updateStopwatch(){
@@ -108,4 +120,18 @@ function updateHours(){
 function pauseDisplay(){
   resumeBtn.style.display = "none";
   pauseBtn.style.display = "inline-block";
+}
+
+function displayIcons(){
+  theme = sessionStorage.getItem("theme");
+
+  if(theme === "white"){
+    sunMoon.src = "../icons/MoonBlackEmpty.svg";
+    timer.src = "../icons/TimerBlackEmpty.svg";
+    stopwatchIcon.src = "../icons/StopwatchBlackFill.svg";
+  }else{
+    sunMoon.src = "../icons/SunWhiteEmpty.svg";
+    timer.src = "../icons/TimerWhiteEmpty.svg";
+    stopwatchIcon.src = "../icons/StopwatchWhiteFill.svg";
+  }
 }
