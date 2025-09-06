@@ -77,6 +77,7 @@ function updateTimer(){
       window.alert("Time is up!");
       sound.pause();
       sound.currentTime = 0;
+      resetTimer();
       return;
     } //If time is 0, stop the timer
 
