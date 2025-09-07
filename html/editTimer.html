@@ -15,15 +15,22 @@
       <!-- Top navigation icons -->
       <header>
         <div class="headerLeft">
-          <a href="../index.html"><img src="../icons/TimerWhiteEmpty.svg" alt="T" id="timer"></a>
-          <a href="./stopwatch.html"><img src="../icons/StopwatchWhiteEmpty.svg" alt="S" id="stopwatch"></a>
+          <a href="../index.html">
+            <img src="../icons/TimerWhiteEmpty.svg" alt="T" id="timer">
+          </a>
+          <a href="./stopwatch.html">
+            <img src="../icons/StopwatchWhiteEmpty.svg" alt="S" id="stopwatch">
+          </a>
         </div>
         <div class="headerRight">
-          <button onclick="toggleWhiteMode(); displayIcons()" id="darkWhite"><img src="../icons/SunWhiteEmpty.svg" alt="S" id="sunMoon"></button>
+          <button onclick="toggleWhiteMode(); displayIcons()" id="darkWhite">
+            <img src="../icons/SunWhiteEmpty.svg" alt="S" id="sunMoon">
+          </button>
         </div>
       </header>
 
       <main>
+        <!-- Main grid with input fields for user input -->
         <div class="inputGrid">
           <div class="hours">Hours</div>
           <div class="minutes">Minutes</div>
@@ -37,9 +44,9 @@
       </main>
       
       <footer>
-        <div class="cancelStart">
-          <button class="cancelButton" onclick="cancel()">Cancel</button>
-          <button class="startButton" onclick="setTimer()">OK</button>
+        <div class="footerButtons">
+          <button class="cancelButton redButton" onclick="cancel()">Cancel</button>
+          <button class="okButton blueButton" onclick="setTimer()">OK</button>
         </div>
       </footer>
 

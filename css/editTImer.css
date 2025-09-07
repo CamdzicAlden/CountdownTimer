@@ -1,5 +1,7 @@
+/*Importing css file with colors*/
 @import url('./colorVariables.css');
 
+/*Adjusting body grid rows heights*/
 body{
     grid-template-rows: 10% 45% 45%;
 }
@@ -9,9 +11,10 @@ main{
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: end;  /*Place grid all the way to the bottom vertically*/
 }
 
+/*Middle grid container for user input*/
 .inputGrid{
     width: auto;
     display: grid;
@@ -25,8 +28,9 @@ main{
     text-align: center;
 }
 
+/*Style for input fields*/
 input[type="text"]{
-    width: 12vh;
+    width: 13vh;
     height: auto;
     background-color: transparent;
     color: inherit;
@@ -39,6 +43,7 @@ input[type="text"]:focus{
     outline: none;
 }
 
+/*Positioning semicolumns*/
 #semicolumn1{
     grid-column: 2 / span 1; 
     grid-row: 1 / span 2; 
@@ -51,26 +56,15 @@ input[type="text"]:focus{
     align-self: flex-end;
 }
 
+/*Text labels*/
 .hours, .minutes, .seconds {
     font-size: 2vh;
 }
 
 footer{
-    display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-.cancelButton{
-    background-color: #CB4949;
-}
-
-.cancelButton:hover{
-    background-color: #D02424;
-}
-
-.cancelStart{
-    width: 34vh;
-    display: flex;
-    justify-content: space-between;
+.footerButtons{
+    display: block;
 }

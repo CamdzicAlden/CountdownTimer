@@ -5,14 +5,19 @@ const minutes = document.querySelector(".minutes");  //Getting minutes
 const seconds = document.querySelector(".seconds");  //Getting seconds
 const semicolumn1 = document.querySelector(".semicolumn1"); //Getting first semicolumn
 const semicolumn2 = document.querySelector(".semicolumn2"); //Getting second semicolumn
-const timerTime = document.querySelector(".timerTime");
+const timerTime = document.querySelector(".timerTime");  //Getting initial timer time container
+const timeIsUp = document.querySelector(".timeIsUp"); //Getting timer done message container
+const bell = document.getElementById("bell");
 
 //Bottom button variables
 const startBtn = document.querySelector(".startButton");
 const resetBtn = document.querySelector(".resetButton");
 const pauseBtn = document.querySelector(".pauseButton");
 const resumeBtn = document.querySelector(".resumeButton");
-const pauseReset = document.querySelector(".pauseReset");
+const footerButtons = document.querySelector(".footerButtons");  //Getting pause/reset button container
+const restartBtn = document.querySelector(".restartButton");
+const dismissBtn = document.querySelector(".dismissButton");
+const dismissRestart = document.querySelector(".dismissRestart");
 
 //Header icons variables
 const sunMoon = document.getElementById("sunMoon");
@@ -20,15 +25,19 @@ const stopwatch = document.getElementById("stopwatch");
 const timerIcon = document.getElementById("timer");
 const edit = document.getElementById("editTimer");
 const headerRight = document.querySelector(".headerRight");
-const sound = new Audio("./sound/chime_time.mp3");
-let theme = sessionStorage.getItem("theme");
-theme = theme ? theme : "dark";
 
-if(theme === "white"){
+//Other variables
+const sound = new Audio("./sound/chime_time.mp3");  //Sound that plays when timer is 0
+const storedTimerData = sessionStorage.getItem("timerData");  //Getting timerData from session storage
+let theme = sessionStorage.getItem("theme");  //Getting theme from session storage
+
+theme = theme ? theme : "dark";  //If theme doesnt exist, make dark theme default
+
+if(theme === "white"){  //Setting correct theme after reload
   document.body.classList.add("white");
 }
 
-displayIcons();
+displayIcons();  //Displaying header icons
 
 //Code for stopwatch icon hovering
 stopwatch.onmouseover = () => stopwatch.src = (theme === "white") ? "./icons/StopwatchBlackFill.svg" : "./icons/StopwatchWhiteFill.svg";
@@ -46,7 +55,6 @@ const circumference = 2 * Math.PI * radius;  //Calculating circumference of the 
 circle.style.strokeDasharray = circumference;  //Making circle with one big dash 
 circle.style.strokeDashoffset = 0;  //Initial offset
 
-const storedTimerData = sessionStorage.getItem("timerData");
 let defaultH = 0, defaultMin = 1, defaultSec = 0,  defaultHundr = 0;
 
 if(storedTimerData){
@@ -62,9 +70,11 @@ if(defaultH === 0 && defaultMin === 0 && defaultSec === 0){
   defaultSec = 0;
 }
 
-initialDisplay();
 let currentH = defaultH, currentMin = defaultMin, currentSec = defaultSec, currentHundr = defaultHundr;
 let timer, hundredthsSum = 0, currentHundredthsSum = 0; 
+
+initialTimerTime();
+displayTime();
 
 //Starting time in hundredth of seconds 
 hundredthsSum = (((((defaultH * 60) + defaultMin) * 60) + defaultSec) * 100) + defaultHundr;  
@@ -72,13 +82,7 @@ hundredthsSum = (((((defaultH * 60) + defaultMin) * 60) + defaultSec) * 100) + d
 //Function for updating timer circle
 function updateTimer(){ 
     if(currentH === 0 && currentMin === 0 && currentSec === 0 && currentHundr === 0) {
-      clearInterval(timer); 
-      sound.loop = true;
-      sound.play();
-      window.alert("Time is up!");
-      sound.pause();
-      sound.currentTime = 0;
-      resetTimer();
+      timerDone();
       return;
     } //If time is 0, stop the timer
 
@@ -114,7 +118,7 @@ function startTimer(){
     timer = setInterval(updateTimer, 10);
     startBtn.style.display = "none";
     hideEdit();
-    pauseReset.style.display = "flex";
+    footerButtons.style.display = "flex";
     circle.style.transition = "stroke 1s linear";
 }
 
@@ -132,7 +136,7 @@ function resetTimer(){
     circle.style.transition = "none";
     circle.style.stroke = "#305CDE";
 
-    pauseReset.style.display = "none";
+    footerButtons.style.display = "none";
     pauseDisplay();
     startBtn.style.display = "inline-block";
 }
@@ -201,60 +205,53 @@ function showEdit(){
   headerRight.style.justifyContent = "space-around";
 }
 
-function initialDisplay(){
-   //Display hours
-  if(defaultH === 0) {
-    hours.style.display = "none";
-    semicolumn1.style.display = "none";
-  }else{
-    hours.style.display = "block";
-    semicolumn1.style.display = "block";
-    hours.textContent = defaultH < 10 ? "0" + defaultH : defaultH;
-  }
-
-  //Display minutes
-  if(defaultMin === 0 && defaultH === 0) {
-    minutes.style.display = "none";
-    semicolumn2.style.display = "none";
-  }else{
-    minutes.style.display = "block";
-    semicolumn2.style.display = "block";
-    minutes.textContent = defaultMin < 10 ? "0" + defaultMin : defaultMin;
-  }
-
-  //Display seconds
-  seconds.textContent = defaultSec < 10 ? "0" + defaultSec : defaultSec;
-
-  if(defaultH > 0 && defaultMin > 0 && defaultSec > 0) 
-    timerTime.textContent = defaultH + " h " + defaultMin + " m " + defaultSec + " s";
-  else if(defaultH > 0 && defaultMin > 0)
-    timerTime.textContent = defaultH + " h " + defaultMin + " m";
-  else if(defaultH > 0 && defaultSec > 0)
-    timerTime.textContent = defaultH + " h " + defaultSec + " s";
-  else if(defaultMin > 0 && defaultSec > 0)
-    timerTime.textContent = defaultMin + " m " + defaultSec + " s";
-  else if(defaultH > 0) 
-    timerTime.textContent = defaultH + " h";
-  else if(defaultMin > 0) 
-    timerTime.textContent = defaultMin + " m";
-  else if(defaultSec > 0) 
-    timerTime.textContent = defaultSec + " s";
+function initialTimerTime(){
+  //Logic for displaying initial timer time
+  timerTime.textContent = 
+  (defaultH > 0 ? defaultH + " h " : "") + 
+  (defaultMin > 0 ? defaultMin + " min " : "") + 
+  (defaultSec > 0 ? defaultSec + " sec" : "");
 }
 
+//Method for displaying header icons depennding on theme
 function displayIcons(){
-  theme = sessionStorage.getItem("theme");
+  theme = sessionStorage.getItem("theme");  //Getting the theme
 
-  if(theme === "white"){
+  if(theme === "white"){  //If it is white
     sunMoon.src = "./icons/MoonBlackEmpty.svg";
     stopwatch.src = "./icons/StopwatchBlackEmpty.svg";
     timerIcon.src = "./icons/TimerBlackFill.svg";
+    bell.src = "./icons/BellBlack.svg";
     edit.src = "./icons/EditBlack.svg";
-  }else{
+  }else{  //If it is dark
     sunMoon.src = "./icons/SunWhiteEmpty.svg";
     stopwatch.src = "./icons/StopwatchWhiteEmpty.svg";
     timerIcon.src = "./icons/TimerWhiteFill.svg";
+    bell.src = "./icons/BellWhite.svg";
     edit.src = "./icons/EditWhite.svg";
   }
+}
+
+function dismiss(){
+  sound.pause();
+  sound.currentTime = 0;
+  dismissRestart.style.display = "none";
+  timeIsUp.style.display = "none";
+  resetTimer();
+}
+
+function restart(){
+  dismiss();
+  startTimer();
+}
+
+function timerDone(){
+  clearInterval(timer); 
+  sound.loop = true;
+  sound.play();
+  footerButtons.style.display = "none";
+  dismissRestart.style.display = "flex";
+  timeIsUp.style.display = "flex";
 }
 
 

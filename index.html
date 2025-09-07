@@ -17,41 +17,61 @@
       <header>
         <div class="headerLeft">
           <img src="./icons/TimerWhiteFill.svg" alt="T" id="timer">
-          <a href="./html/stopwatch.html"><img src="./icons/StopwatchWhiteEmpty.svg" alt="S" id="stopwatch"></a>
+          <a href="./html/stopwatch.html">
+            <img src="./icons/StopwatchWhiteEmpty.svg" alt="S" id="stopwatch">
+          </a>
         </div>
         <div class="headerRight">
-          <button onclick="toggleWhiteMode(); displayIcons()" id="darkWhite"><img src="./icons/SunWhiteEmpty.svg" alt="S" id="sunMoon"></button>
-          <a href="./html/editTimer.html"><img src="./icons/EditWhite.svg" alt="S" id="editTimer"></a>
+          <button onclick="toggleWhiteMode(); displayIcons()" id="darkWhite"> 
+            <img src="./icons/SunWhiteEmpty.svg" alt="S" id="sunMoon"> 
+          </button>
+          <a href="./html/editTimer.html">
+            <img src="./icons/EditWhite.svg" alt="S" id="editTimer">
+          </a>
         </div>
       </header>
 
       <main>
          <!-- Middle svg timer circle -->
          <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-           <circle class="background" cx="50" cy="50" r="35"/>
-           <circle class="progress" cx="50" cy="50" r="35"/>
+           <circle class="background" cx="50" cy="50" r="40"/>
+           <circle class="progress" cx="50" cy="50" r="40"/>
          </svg>
 
+         <!-- Text for displaying initial timer value -->
          <div class="timerTime"></div>
 
          <!-- Text in the middle -->
          <div class="timeText" id="timeText">
-            <div class="hours" style="display: none">00</div>
-            <div class="semicolumn1" style="display: none;">:</div>
-            <div class="minutes">01</div>
+            <div class="hours"></div>
+            <div class="semicolumn1">:</div>
+            <div class="minutes"></div>
             <div class="semicolumn2">:</div>
-            <div class="seconds">00</div>
+            <div class="seconds"></div>
+         </div>
+
+         <!-- Timer end message -->
+         <div class="timeIsUp">
+          <img src="./icons/BellWhite.svg" alt="B" id="bell">
+          <div>Time's up!</div>
          </div>
       </main>
       
       <footer>
         <!-- Bottom timer buttons -->
-        <button onclick="startTimer()" class="startButton">Start</button>
+        <button onclick="startTimer()" class="startButton blueButton">Start</button>
 
-        <div class="pauseReset">
-          <button class="resetButton" onclick="resetTimer()">Reset</button>
-          <button class="pauseButton" onclick="pauseTimer()">Pause</button>
-          <button class="resumeButton" onclick="resumeTimer()">Resume</button>
+        <!-- Reset and pause/resume buttons -->
+        <div class="footerButtons">
+          <button class="resetButton grayButton" onclick="resetTimer()">Reset</button>
+          <button class="pauseButton redButton" onclick="pauseTimer()">Pause</button>
+          <button class="resumeButton blueButton" onclick="resumeTimer()">Resume</button>
+        </div>
+
+        <!-- Dissmiss/restart buttons -->
+        <div class="dismissRestart">
+          <button class="dismissButton grayButton" onclick="dismiss()">Dismiss</button>
+          <button class="restartButton blueButton" onclick="restart()">Restart</button>
         </div>
       </footer>
 

@@ -8,7 +8,7 @@ const startBtn = document.querySelector(".startButton");
 const pauseBtn = document.querySelector(".pauseButton");
 const resetBtn = document.querySelector(".resetButton");
 const resumeBtn = document.querySelector(".resumeButton");
-const pauseReset = document.querySelector(".pauseReset");
+const footerButtons = document.querySelector(".footerButtons");
 
 //Main elements
 const hours = document.querySelector(".hours");
@@ -64,7 +64,7 @@ function updateStopwatch(){
 function startStopwatch(){
     stopwatch = setInterval(updateStopwatch, 10);
     startBtn.style.display = "none";
-    pauseReset.style.display = "flex";
+    footerButtons.style.display = "flex";
 }
 
 //Event handler for reset button
@@ -76,7 +76,7 @@ function resetStopwatch(){
     currentHundr = 0;
     updateHours(); //This method is calling all update methods
     pauseDisplay();
-    pauseReset.style.display = "none";
+    footerButtons.style.display = "none";
     startBtn.style.display = "inline-block";
 }
 
@@ -122,6 +122,7 @@ function pauseDisplay(){
   pauseBtn.style.display = "inline-block";
 }
 
+//Function for displaying icons
 function displayIcons(){
   theme = sessionStorage.getItem("theme");
 

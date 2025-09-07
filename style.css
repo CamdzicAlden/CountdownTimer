@@ -1,5 +1,6 @@
 /*Importing Roboto Google font*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+/*Importing css file with colors*/
 @import url('./css/colorVariables.css');
 
 *{
@@ -23,6 +24,7 @@ body{
     grid-template-rows: 10% 80% 10%;
 }
 
+/*Style for body when white mode is on*/
 body.white{
     background-color: var(--pageWhite);
     color: var(--pageBlack);
@@ -36,32 +38,39 @@ header{
 }
 
 header img{
-    width: 4vh;
-    height: 4vh;
+    width: min(4vh, 4vw);
+    height: min(4vh, 4vw);
 }
 
 header img:hover{
     cursor: pointer;
 }
 
+header a{
+    height: auto;
+    width: auto;
+    display: block;
+    line-height: 0;
+}
+
 /*Left header flex container*/
 .headerLeft{
-    width: 20vh;
+    width: min(20vh, 20vw);
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 /*Right header flex container*/
 .headerRight{
-    width: 40vh;
+    width: min(40vh, 40vw);
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 /*Button container*/
 footer{
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: top;
@@ -75,8 +84,8 @@ button{
     border: none;
     color: inherit;
     font-family: inherit;
-    font-weight: 700;
-    font-size: 2.5vh;
+    font-weight: 500;
+    font-size: min(2.5vh, 2.5vw);
 }
 
 #darkWhite{
@@ -85,6 +94,7 @@ button{
     width: auto;
     height: auto;
     border-radius: 0;
+    line-height: 0;
 }
 
 button:hover{
@@ -92,43 +102,39 @@ button:hover{
 }
 
 /*Button for starting timer/stopwatch*/
-.startButton{
+.blueButton{
     background-color: var(--pageBlue);
 }
 
-.startButton:hover{
+.blueButton:hover{
     background-color: var(--pageBlueHover);
 }
 
 /*Container for pause and reset buttons*/
-.pauseReset{
+.footerButtons{
     width: 34vh;
     height: 6vh;
     display: none;
     justify-content: space-between;
 }
 
-.resetButton{
+.grayButton{
     background-color: #616161;
 }
 
-.resetButton:hover{
+.grayButton:hover{
     background-color: #414141;
 }
 
-.pauseButton{
+.redButton{
     background-color: #CB4949;
 }
 
-.pauseButton:hover{
+.redButton:hover{
     background-color: #D02424;
 }
 
 .resumeButton{
-    background-color: var(--pageBlue);
     display: none;
 }
 
-.resumeButton:hover{
-    background-color: var(--pageBlueHover);
-}
