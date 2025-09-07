@@ -39,7 +39,7 @@ circle{
     top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: min(2.5vh, 2.5vw);
+    font-size: 2.5vh;
 }
 
 /*Middle timer text*/
@@ -50,7 +50,7 @@ circle{
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
-    font-size: min(9vh, 9vw);
+    font-size: 9vh;
 }
 
 /*Timer end message*/
