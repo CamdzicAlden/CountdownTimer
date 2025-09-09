@@ -16,7 +16,7 @@ svg{
     display: block;  /*Preventing extra space under*/
     transform: rotate(-90deg);  /*Rotating so it starts from the top*/
     height: auto;
-    width: clamp(400px, 50vw, 600px);
+    width: clamp(150px, 50vw, 600px);
 }
 
 circle{
