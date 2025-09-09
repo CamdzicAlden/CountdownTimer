@@ -38,8 +38,8 @@ header{
 }
 
 header img{
-    width: clamp(1rem, 4vh, 2rem);
-    height: clamp(1rem, 4vh, 2rem);
+    width: clamp(2rem, 4.5vh, 4rem);
+    height: clamp(2rem, 4.5vh, 4rem);
 }
 
 header img:hover{
@@ -55,7 +55,7 @@ header a{
 
 /*Left header flex container*/
 .headerLeft{
-    width: clamp(4rem, 20vh, 6rem);
+    width: clamp(10rem, 25vh, 15rem);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -63,7 +63,7 @@ header a{
 
 /*Right header flex container*/
 .headerRight{
-    width: clamp(5rem, 40vh, 12rem);
+    width: clamp(10rem, 45vh, 25rem);
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -79,14 +79,14 @@ footer{
 /*Style for every button inside website*/
 button{
     width: 80%;
-    max-width: 75px;
-    height: clamp(1.4rem, 6vh, 1.7rem);
+    max-width: 130px;
+    height: clamp(3rem, 6vh, 4rem);
     border-radius: 99999px;
     border: none;
     color: inherit;
     font-family: inherit;
     font-weight: 500;
-    font-size: 0.7rem;
+    font-size: clamp(1rem, 2.5vh, 5rem);
 }
 
 #darkWhite{
@@ -113,7 +113,7 @@ button:hover{
 
 /*Container for pause and reset buttons*/
 .footerButtons{
-    width: clamp(9.5rem, 34vh, 10rem);
+    width: clamp(17rem, 34vh, 20rem);
     height: auto;
     display: none;
     justify-content: space-between;

@@ -20,7 +20,7 @@ main{
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     grid-template-rows: auto auto;
-    font-size: clamp(2rem, 10vh, 3rem);
+    font-size: clamp(4rem, 10vh, 10rem);
 
 }
 
@@ -30,7 +30,7 @@ main{
 
 /*Style for input fields*/
 input[type="text"]{
-    width: clamp(3rem, 13vh, 4.5rem);
+    width: clamp(6rem, 13vh, 9rem);
     height: auto;
     background-color: transparent;
     color: inherit;
@@ -58,7 +58,7 @@ input[type="text"]:focus{
 
 /*Text labels*/
 .hours, .minutes, .seconds {
-    font-size: clamp(0.5rem, 2vh, 1.5rem);
+    font-size: clamp(0.8rem, 2vh, 3rem);
 }
 
 footer{
