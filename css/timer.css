@@ -50,7 +50,7 @@ circle{
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
-    font-size: clamp(1rem, 9vh, 2.3rem);
+    font-size: clamp(2rem, 9vh, 2.4rem);
 }
 
 /*Timer end message*/
@@ -63,7 +63,7 @@ circle{
     justify-content: center;
     align-items: center;
     gap: 0.5vh;
-    font-size: clamp(0.3rem, 2vh, 1rem);
+    font-size: clamp(0.4rem, 2vh, 1rem);
 }
 
 .timeIsUp img{
