@@ -13,11 +13,11 @@ main{
 }
 
 .stopwatchNumbers{
-    width: clamp(10rem, 60vw, 27rem);
+    width: clamp(10rem, 60vw, 29rem);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    font-size: clamp(4rem, 10vh, 10rem);
+    font-size: clamp(4rem, 7vw, 10rem);
 }
 
 .secondsHundredths{
@@ -28,7 +28,7 @@ main{
 }
 
 .hundredths{
-    font-size: clamp(1.5rem, 5vh, 6rem);
+    font-size: clamp(1.5rem, 4vw, 6rem);
 }
 
 footer{
