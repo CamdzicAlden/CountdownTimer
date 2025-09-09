@@ -17,7 +17,7 @@ main{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    font-size: clamp(4rem, 10vh, 10rem);
+    font-size: clamp(2rem, 10vh, 10rem);
 }
 
 .secondsHundredths{
