@@ -21,7 +21,7 @@ main{
 }
 
 .secondsHundredths{
-    width: clamp(5rem, 19vw, 9.5rem);
+    width: clamp(5rem, 19vw, 8rem);
     display: flex;
     justify-content: space-between;
     align-items: baseline;
