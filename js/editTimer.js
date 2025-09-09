@@ -14,7 +14,6 @@ const footerButtons = document.querySelector(".footerButtons");
 
 //Dark/white mode variable
 let theme = sessionStorage.getItem("theme");
-theme = theme ? theme : "dark";
 
 if(theme === "white"){
   document.body.classList.add("white");

@@ -20,7 +20,6 @@ let currentH = 0, currentMin = 0, currentSec = 0, currentHundr = 0;
 let stopwatch;
 
 let theme = sessionStorage.getItem("theme");
-theme = theme ? theme : "dark";
 
 if(theme === "white"){
   document.body.classList.add("white");

@@ -7,17 +7,17 @@ const semicolumn1 = document.querySelector(".semicolumn1"); //Getting first semi
 const semicolumn2 = document.querySelector(".semicolumn2"); //Getting second semicolumn
 const timerTime = document.querySelector(".timerTime");  //Getting initial timer time container
 const timeIsUp = document.querySelector(".timeIsUp"); //Getting timer done message container
-const bell = document.getElementById("bell");
+const bell = document.getElementById("bell");  //Getting bell icon
 
 //Bottom button variables
-const startBtn = document.querySelector(".startButton");
+const startBtn = document.querySelector(".startButton");  
 const resetBtn = document.querySelector(".resetButton");
 const pauseBtn = document.querySelector(".pauseButton");
 const resumeBtn = document.querySelector(".resumeButton");
 const footerButtons = document.querySelector(".footerButtons");  //Getting pause/reset button container
 const restartBtn = document.querySelector(".restartButton");
 const dismissBtn = document.querySelector(".dismissButton");
-const dismissRestart = document.querySelector(".dismissRestart");
+const dismissRestart = document.querySelector(".dismissRestart");  //Getting dismissRestart button container
 
 //Header icons variables
 const sunMoon = document.getElementById("sunMoon");
@@ -30,8 +30,6 @@ const headerRight = document.querySelector(".headerRight");
 const sound = new Audio("./sound/chime_time.mp3");  //Sound that plays when timer is 0
 const storedTimerData = sessionStorage.getItem("timerData");  //Getting timerData from session storage
 let theme = sessionStorage.getItem("theme");  //Getting theme from session storage
-
-theme = theme ? theme : "dark";  //If theme doesnt exist, make dark theme default
 
 if(theme === "white"){  //Setting correct theme after reload
   document.body.classList.add("white");
@@ -57,13 +55,14 @@ circle.style.strokeDashoffset = 0;  //Initial offset
 
 let defaultH = 0, defaultMin = 1, defaultSec = 0,  defaultHundr = 0;
 
-if(storedTimerData){
+if(storedTimerData){  //If there is storedTimerData
   const timerData = JSON.parse(storedTimerData);
   defaultH = Number(timerData.h);
   defaultMin = Number(timerData.m);
   defaultSec = Number(timerData.s);
 }
 
+//If stored data is 0
 if(defaultH === 0 && defaultMin === 0 && defaultSec === 0){
   defaultH = 0;
   defaultMin = 1;
@@ -185,21 +184,25 @@ function displayTime(){
   seconds.textContent = displaySec < 10 ? "0" + displaySec : displaySec;
 }
 
+//Function for displaying resumeButton
 function resumeDisplay(){
   pauseBtn.style.display = "none";
   resumeBtn.style.display = "inline-block";
 }
 
+//Function for displaying pauseButton
 function pauseDisplay(){
   resumeBtn.style.display = "none";
   pauseBtn.style.display = "inline-block";
 }
 
+//Function for hiding edit button
 function hideEdit(){
   edit.style.display = "none";
   headerRight.style.justifyContent = "center";
 }
 
+//Function for showing edit button
 function showEdit(){
   edit.style.display = "block";
   headerRight.style.justifyContent = "space-around";
@@ -232,6 +235,7 @@ function displayIcons(){
   }
 }
 
+//Function for dismiss button
 function dismiss(){
   sound.pause();
   sound.currentTime = 0;
@@ -240,11 +244,13 @@ function dismiss(){
   resetTimer();
 }
 
+//Function for restart button
 function restart(){
   dismiss();
   startTimer();
 }
 
+//Function called when timer is done
 function timerDone(){
   clearInterval(timer); 
   sound.loop = true;
