@@ -16,7 +16,7 @@ svg{
     display: block;  /*Preventing extra space under*/
     transform: rotate(-90deg);  /*Rotating so it starts from the top*/
     height: auto;
-    width: clamp(200px, 47vw, 360px);
+    width: clamp(250px, 50vw, 360px);
 }
 
 circle{
@@ -39,7 +39,7 @@ circle{
     top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2.5vh;
+    font-size: clamp(0.6rem, 2.5vh, 1rem);
 }
 
 /*Middle timer text*/
@@ -50,7 +50,7 @@ circle{
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
-    font-size: 9vh;
+    font-size: clamp(1rem, 9vh, 2.3rem);
 }
 
 /*Timer end message*/
@@ -63,18 +63,18 @@ circle{
     justify-content: center;
     align-items: center;
     gap: 0.5vh;
-    font-size: 2vh;
+    font-size: clamp(0.3rem, 2vh, 1rem);
 }
 
 .timeIsUp img{
-    width: 2vh;
-    height: 2vh;
+    width: clamp(0.3rem, 2vh, 1rem);
+    height: clamp(0.3rem, 2vh, 1rem);
 }
 
 /*Dismiss/restart container*/
 .dismissRestart{
-    width: 34vh;
-    height: 6vh;
+    width: clamp(6rem, 34vh, 15rem);
+    height: auto;
     display: none;
     justify-content: space-between;
 }

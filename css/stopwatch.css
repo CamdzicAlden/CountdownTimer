@@ -13,22 +13,22 @@ main{
 }
 
 .stopwatchNumbers{
-    width: 60vh;
+    width: clamp(13rem, 60vh, 16rem);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    font-size: 10vh;
+    font-size: clamp(2.5rem, 10vh, 3rem);
 }
 
 .secondsHundredths{
-    width: 19vh;
+    width: clamp(3rem, 19vh, 7rem);
     display: flex;
     justify-content: space-between;
     align-items: baseline;
 }
 
 .hundredths{
-    font-size: 5vh;
+    font-size: clamp(1rem, 5vh, 2rem);
 }
 
 footer{
