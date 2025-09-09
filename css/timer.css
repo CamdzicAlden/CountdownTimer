@@ -50,7 +50,7 @@ circle{
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
-    font-size: clamp(2rem, 8vh, 5rem);
+    font-size: clamp(1.5rem, 8vh, 5rem);
 }
 
 /*Timer end message*/
